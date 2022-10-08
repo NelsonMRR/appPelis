@@ -25,6 +25,7 @@ public class ApiApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		/*Creación del usuario admin*/
 		/*Usuarios usuario = new Usuarios();
 
 		usuario.setNombre("Nelson");
