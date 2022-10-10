@@ -1,7 +1,7 @@
 package com.API.controladores;
 
 import com.API.modelos.Roles;
-import com.API.modelos.UsuarioRol;
+import com.API.modelos.UsuarioRoles;
 import com.API.modelos.Usuarios;
 import com.API.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,23 +12,26 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/usuarios")
+@CrossOrigin("*")
 public class UsuarioControlador {
     @Autowired
     private UsuarioServicio usuarioServicio;
 
     @PostMapping("/")
     public Usuarios guardarUsuario(@RequestBody Usuarios usuarios) throws Exception{
-        Set<UsuarioRol> roles = new HashSet<>();
+        usuarios.setPerfil("default.png");
+        Set<UsuarioRoles> usuarioRoles = new HashSet<>();
 
         Roles rol = new Roles();
         rol.setId(2L);
         rol.setNombre("NORMAL");
 
-        UsuarioRol usuarioRol = new UsuarioRol();
+        UsuarioRoles usuarioRol = new UsuarioRoles();
         usuarioRol.setUsuario(usuarios);
         usuarioRol.setRol(rol);
 
-        return usuarioServicio.guardarUsuario(usuarios,roles);
+        usuarioRoles.add(usuarioRol);
+        return usuarioServicio.guardarUsuario(usuarios,usuarioRoles);
     }
 
     @GetMapping("/{username}")

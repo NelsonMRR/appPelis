@@ -7,13 +7,22 @@ import java.util.Set;
 @Entity
 @Table(name = "roles")
 public class Roles {
+
     @Id
     private Long id;
-
     private String nombre;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch =FetchType.EAGER, mappedBy = "rol")
-    private Set<UsuarioRol> usuarioRoles = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "rol")
+    private Set<UsuarioRoles> usuarioRoles = new HashSet<>();
+
+    public Roles(){
+
+    }
+
+    public Roles(Long id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
 
     public Long getId() {
         return id;
@@ -31,15 +40,11 @@ public class Roles {
         this.nombre = nombre;
     }
 
-    public Set<UsuarioRol> getUsuarioRoles() {
+    public Set<UsuarioRoles> getUsuarioRoles() {
         return usuarioRoles;
     }
 
-    public void setUsuarioRoles(Set<UsuarioRol> usuarioRoles) {
+    public void setUsuarioRoles(Set<UsuarioRoles> usuarioRoles) {
         this.usuarioRoles = usuarioRoles;
-    }
-
-    public Roles(){
-
     }
 }

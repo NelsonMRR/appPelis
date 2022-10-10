@@ -1,14 +1,18 @@
 package com.API.modelos;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuarios {
+public class Usuarios implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,9 +26,25 @@ public class Usuarios {
     private boolean estado = true;
     private String perfil;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usuario")
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "usuario")
     @JsonIgnore
-    private Set<UsuarioRol> UsuarioRol = new HashSet<>();
+    private Set<UsuarioRoles> usuarioRoles = new HashSet<>();
+
+    public Usuarios(){
+
+    }
+
+    public Usuarios(Long id, String username, String password, String nombre, String apellido, String email, String telefono, boolean estado, String perfil) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.telefono = telefono;
+        this.estado = estado;
+        this.perfil = perfil;
+    }
 
     public Long getId() {
         return id;
@@ -38,8 +58,32 @@ public class Usuarios {
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<Autoridad> autoridades = new HashSet<>();
+        this.usuarioRoles.forEach(usuarioRol -> {
+            autoridades.add(new Autoridad(usuarioRol.getRol().getNombre()));
+        });
+        return autoridades;
     }
 
     public String getPassword() {
@@ -82,12 +126,12 @@ public class Usuarios {
         this.telefono = telefono;
     }
 
-    public boolean isEstado() {
+    public boolean isEnabled() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public void setEnabled(boolean enabled) {
+        this.estado = enabled;
     }
 
     public String getPerfil() {
@@ -98,15 +142,11 @@ public class Usuarios {
         this.perfil = perfil;
     }
 
-    public Set<com.API.modelos.UsuarioRol> getUsuarioRol() {
-        return UsuarioRol;
+    public Set<UsuarioRoles> getUsuarioRoles() {
+        return usuarioRoles;
     }
 
-    public void setUsuarioRol(Set<com.API.modelos.UsuarioRol> usuarioRol) {
-        UsuarioRol = usuarioRol;
-    }
-
-    public Usuarios(){
-
+    public void setUsuarioRoles(Set<UsuarioRoles> usuarioRoles) {
+        this.usuarioRoles = usuarioRoles;
     }
 }

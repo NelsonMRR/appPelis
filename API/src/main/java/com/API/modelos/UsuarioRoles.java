@@ -3,7 +3,7 @@ package com.API.modelos;
 import javax.persistence.*;
 
 @Entity
-public class UsuarioRol {
+public class UsuarioRoles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -37,5 +37,4 @@ public class UsuarioRol {
     public void setRol(Roles rol) {
         this.rol = rol;
     }
-
 }

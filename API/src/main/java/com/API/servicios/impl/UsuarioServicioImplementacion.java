@@ -1,16 +1,17 @@
-package com.API.servicios;
+package com.API.servicios.impl;
 
-import com.API.modelos.UsuarioRol;
+import com.API.modelos.UsuarioRoles;
 import com.API.modelos.Usuarios;
 import com.API.repositorios.RolRepositorio;
 import com.API.repositorios.UsuarioRepositorio;
+import com.API.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class UsuarioServicioImplementacion implements UsuarioServicio{
+public class UsuarioServicioImplementacion implements UsuarioServicio {
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
@@ -19,16 +20,17 @@ public class UsuarioServicioImplementacion implements UsuarioServicio{
     private RolRepositorio rolRepositorio;
 
     @Override
-    public Usuarios guardarUsuario(Usuarios usuario, Set<UsuarioRol> usuarioRoles) throws Exception {
+    public Usuarios guardarUsuario(Usuarios usuario, Set<UsuarioRoles> usuarioRoles) throws Exception {
         Usuarios usuarioLocal = usuarioRepositorio.findByUsername(usuario.getUsername());
-        if (usuarioLocal != null){
-            System.out.println("El suario ya existe.");
-            throw  new Exception("El usuario ya esta almacenado");
-        }else{
-            for(UsuarioRol usuarioRol:usuarioRoles){
+        if(usuarioLocal != null){
+            System.out.println("El usuario ya existe");
+            throw new Exception("El usuario ya esta presente");
+        }
+        else{
+            for(UsuarioRoles usuarioRol:usuarioRoles){
                 rolRepositorio.save(usuarioRol.getRol());
             }
-            usuario.getUsuarioRol().addAll(usuarioRoles);
+            usuario.getUsuarioRoles().addAll(usuarioRoles);
             usuarioLocal = usuarioRepositorio.save(usuario);
         }
         return usuarioLocal;
@@ -40,7 +42,7 @@ public class UsuarioServicioImplementacion implements UsuarioServicio{
     }
 
     @Override
-    public void eliminarUsuario(Long id) {
-        usuarioRepositorio.deleteById(id);
+    public void eliminarUsuario(Long usuarioId) {
+        usuarioRepositorio.deleteById(usuarioId);
     }
 }

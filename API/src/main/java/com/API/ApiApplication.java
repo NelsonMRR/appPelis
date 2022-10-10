@@ -1,17 +1,10 @@
 package com.API;
 
-import com.API.modelos.Roles;
-import com.API.modelos.UsuarioRol;
-import com.API.modelos.Usuarios;
 import com.API.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import javax.management.relation.Role;
-import java.util.HashSet;
-import java.util.Set;
 
 @SpringBootApplication
 public class ApiApplication implements CommandLineRunner {

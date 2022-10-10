@@ -1,4 +1,4 @@
-package com.API.servicios;
+package com.API.servicios.impl;
 
 import com.API.modelos.Usuarios;
 import com.API.repositorios.UsuarioRepositorio;
