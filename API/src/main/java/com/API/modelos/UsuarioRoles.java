@@ -38,7 +38,4 @@ public class UsuarioRol {
         this.rol = rol;
     }
 
-    public UsuarioRol(){
-
-    }
 }

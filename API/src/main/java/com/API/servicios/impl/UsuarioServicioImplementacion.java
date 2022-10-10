@@ -23,7 +23,7 @@ public class UsuarioServicioImplementacion implements UsuarioServicio{
         Usuarios usuarioLocal = usuarioRepositorio.findByUsername(usuario.getUsername());
         if (usuarioLocal != null){
             System.out.println("El suario ya existe.");
-            throw  new Exception("El usuario ya esta presente");
+            throw  new Exception("El usuario ya esta almacenado");
         }else{
             for(UsuarioRol usuarioRol:usuarioRoles){
                 rolRepositorio.save(usuarioRol.getRol());
