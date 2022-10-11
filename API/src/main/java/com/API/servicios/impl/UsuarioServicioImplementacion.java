@@ -1,5 +1,6 @@
 package com.API.servicios.impl;
 
+import com.API.excepciones.UsuarioEncontradoExcepcion;
 import com.API.modelos.UsuarioRoles;
 import com.API.modelos.Usuarios;
 import com.API.repositorios.RolRepositorio;
@@ -24,7 +25,7 @@ public class UsuarioServicioImplementacion implements UsuarioServicio {
         Usuarios usuarioLocal = usuarioRepositorio.findByUsername(usuario.getUsername());
         if(usuarioLocal != null){
             System.out.println("El usuario ya existe");
-            throw new Exception("El usuario ya esta presente");
+            throw new UsuarioEncontradoExcepcion("El usuario ya esta en sistema");
         }
         else{
             for(UsuarioRoles usuarioRol:usuarioRoles){
