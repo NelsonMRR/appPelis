@@ -22,6 +22,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard/dashboard.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard/user-dashboard.component';
+import { authInterceptorProviders } from './services/auth.interceptor';
 
 
 @NgModule({
@@ -49,7 +50,7 @@ import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboa
     MatToolbarModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

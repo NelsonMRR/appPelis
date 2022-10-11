@@ -37,16 +37,13 @@ export class LoginComponent implements OnInit {
       })
       return;
     }
-
-    this.restService.generateToken(this.loginData).then(
-      (data:any) => {
-        console.log(data);
-        this.restService.loginUser(data.token);
+    this.restService.generarToken(this.loginData).then((data:any) => {
+        let datos = data['body'];
+        this.restService.loginUser(datos.token);
         this.restService.getCurrentUser().then((user:any) => {
-          this.restService.setUser(user);
-          console.log(user);
-
-          if(this.restService.getUserRole() == 'ADMIN'){
+          let usuario = user['body'];
+          this.restService.setUser(usuario);
+          if(this.restService.getUserRole() == 'ADMINISTRADOR'){
             //dashboard admin
             //window.location.href = '/admin';
             this.router.navigate(['admin']);
@@ -64,7 +61,7 @@ export class LoginComponent implements OnInit {
         })
       },(error) => {
         console.log(error);
-        this.snack.open('Detalles inválidos , vuelva a intentar !!','Aceptar',{
+        this.snack.open('Datos inválidos , vuelva a intentar !!','Aceptar',{
           duration:3000
         })
       }

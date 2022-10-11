@@ -43,16 +43,14 @@ export class RestService {
     this.token = environment.api_key;
     this.dataService.iniciaProceso();
     if (method=='GET'){
-    result= await firstValueFrom(this.http.get(environment.api_ruta + path,
-      { 'observe':'response',
-      'headers':{"content-type": "application/json", "Access-Control-Allow-Origin": '*', 
-      "Access-Control-Allow-Methods":"GET, POST, PUT, DELETE , OPTIONS"} } ).pipe(catchError(this.handleError))).then(resp =>{
-        this.dataService.finalizaProceso();
-        return resp;
-    } ).finally(()=>  this.dataService.finalizaProceso());
-
+      result= await firstValueFrom(this.http.get(environment.api_ruta + path, 
+        { 'observe':'response',
+        'headers':{"content-type": "application/json", "Access-Control-Allow-Origin": '*', 
+        "Access-Control-Allow-Methods":"GET, POST, PUT, DELETE , OPTIONS"} } ).pipe(catchError(this.handleError))).then(resp =>{
+          this.dataService.finalizaProceso();
+          return resp;
+        }).finally(()=>  this.dataService.finalizaProceso());
     }
-
     if (method=='POST'){
       // console.log('TOKEN ES ' + this.token );
       result= await firstValueFrom(this.http.post(environment.api_ruta + path, JSON.stringify(payload),
@@ -60,34 +58,39 @@ export class RestService {
         'headers':{"content-type": "application/json", "Access-Control-Allow-Origin": '*', 
         "Access-Control-Allow-Methods":"GET, POST, PUT, DELETE , OPTIONS"} } ).pipe(catchError(this.handleError))).then(resp =>{
           this.dataService.finalizaProceso();
-          return  resp;} ).finally(()=>  this.dataService.finalizaProceso());
+          return  resp;
+        }).finally(()=>  this.dataService.finalizaProceso());
     }
     if (method=='PUT'){
       result= await firstValueFrom(this.http.put(environment.api_ruta + path, JSON.stringify(payload),
-      {'observe':'response', 'headers':{"content-type": "application/json", "Access-Control-Allow-Origin": '*',  
-      "Access-Control-Allow-Methods":"GET, POST, PUT, DELETE , OPTIONS"} } ).pipe(catchError(this.handleError))).then(data =>{
-        this.dataService.finalizaProceso();
-        return data;} ).finally(() =>  this.dataService.finalizaProceso());
+        {'observe':'response', 'headers':{"content-type": "application/json", "Access-Control-Allow-Origin": '*',  
+        "Access-Control-Allow-Methods":"GET, POST, PUT, DELETE , OPTIONS"} } ).pipe(catchError(this.handleError))).then(data =>{
+          this.dataService.finalizaProceso();
+          return data;
+        }).finally(() =>  this.dataService.finalizaProceso());
     }
     if (method=='DELETE'){
-    result= await firstValueFrom(this.http.delete(environment.api_ruta + path,{'observe':'response', 'headers':{"content-type": "application/json", "Access-Control-Allow-Origin": '*',
-      "Access-Control-Allow-Methods":"GET, POST, PUT, DELETE , OPTIONS"} } ).pipe(catchError(this.handleError))).then(data =>{
-        this.dataService.finalizaProceso();
-        return data;} ).finally(() =>  this.dataService.finalizaProceso());
+      result= await firstValueFrom(this.http.delete(environment.api_ruta + path,
+        {'observe':'response', 'headers':{"content-type": "application/json", "Access-Control-Allow-Origin": '*',
+        "Access-Control-Allow-Methods":"GET, POST, PUT, DELETE , OPTIONS"} } ).pipe(catchError(this.handleError))).then(data =>{
+          this.dataService.finalizaProceso();
+          return data;
+        }).finally(() =>  this.dataService.finalizaProceso());
     }
     if (method=='OPTIONS'){
-      result= await firstValueFrom(this.http.options(environment.api_ruta + path,{'observe':'response', 'headers':{"content-type": "application/json",
-      "Access-Control-Allow-Origin": '*', 
-      "Access-Control-Allow-Methods":"GET, POST, PUT, DELETE , OPTIONS"} } ).pipe(catchError(this.handleError))).then(data =>{
-        this.dataService.finalizaProceso();
-        return data;} ).finally(() =>  this.dataService.finalizaProceso());
+      result= await firstValueFrom(this.http.options(environment.api_ruta + path,
+        {'observe':'response', 'headers':{"content-type": "application/json",
+        "Access-Control-Allow-Origin": '*', 
+        "Access-Control-Allow-Methods":"GET, POST, PUT, DELETE , OPTIONS"} } ).pipe(catchError(this.handleError))).then(data =>{
+          this.dataService.finalizaProceso();
+          return data;} ).finally(() =>  this.dataService.finalizaProceso());
     }  
     return result;
   }
 
   //generamos el token
-  public generateToken(loginData:any){
-    return this.RestApi('GET','/generate-token',loginData);
+  public generarToken(loginData:any){
+    return this.RestApi('POST','/generar-token',loginData);
   }
 
   public getCurrentUser(){
