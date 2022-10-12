@@ -23,8 +23,9 @@ public class UsuarioControlador {
 
     @PostMapping("/")
     public Usuarios guardarUsuario(@RequestBody Usuarios usuarios) throws Exception{
-        usuarios.setPerfil("default.png");
 
+        usuarios.setFoto("default.png");
+        usuarios.setNumeroDePeliculas("0");
         usuarios.setPassword(this.bCryptPasswordEncoder.encode(usuarios.getPassword()));
 
         Set<UsuarioRoles> usuarioRoles = new HashSet<>();

@@ -24,17 +24,23 @@ public class Usuarios implements UserDetails {
     private String email;
     private String telefono;
     private boolean estado = true;
-    private String perfil;
+    private String foto;
+    private String fecha;
+    private String numeroDePeliculas;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "usuario")
     @JsonIgnore
     private Set<UsuarioRoles> usuarioRoles = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "usuario_pelicula")
+    @JsonIgnore
+    private Set<UsuarioPeliculas> usuarioPeliculas = new HashSet<>();
+
     public Usuarios(){
 
     }
 
-    public Usuarios(Long id, String username, String password, String nombre, String apellido, String email, String telefono, boolean estado, String perfil) {
+    public Usuarios(Long id, String username, String password, String nombre, String apellido, String email, String telefono, boolean estado, String foto, String fecha, String numeroDePeliculas) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -43,7 +49,9 @@ public class Usuarios implements UserDetails {
         this.email = email;
         this.telefono = telefono;
         this.estado = estado;
-        this.perfil = perfil;
+        this.foto = foto;
+        this.fecha = fecha;
+        this.numeroDePeliculas = numeroDePeliculas;
     }
 
     public Long getId() {
@@ -134,12 +142,12 @@ public class Usuarios implements UserDetails {
         this.estado = enabled;
     }
 
-    public String getPerfil() {
-        return perfil;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     public Set<UsuarioRoles> getUsuarioRoles() {
@@ -149,4 +157,30 @@ public class Usuarios implements UserDetails {
     public void setUsuarioRoles(Set<UsuarioRoles> usuarioRoles) {
         this.usuarioRoles = usuarioRoles;
     }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public Set<UsuarioPeliculas> getUsuarioPeliculas() {
+        return usuarioPeliculas;
+    }
+
+    public void setUsuarioPeliculas(Set<UsuarioPeliculas> usuarioPeliculas) {
+        this.usuarioPeliculas = usuarioPeliculas;
+    }
+
+    public String getNumeroDePeliculas() {
+        return numeroDePeliculas;
+    }
+
+    public void setNumeroDePeliculas(String numeroDePeliculas) {
+        this.numeroDePeliculas = numeroDePeliculas;
+    }
+
+
 }

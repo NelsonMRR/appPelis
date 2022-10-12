@@ -43,6 +43,11 @@ public class UsuarioServicioImplementacion implements UsuarioServicio {
     }
 
     @Override
+    public Usuarios obtenerUsuarioId(Long id) {
+        return usuarioRepositorio.findById(id).get();
+    }
+
+    @Override
     public void eliminarUsuario(Long usuarioId) {
         usuarioRepositorio.deleteById(usuarioId);
     }
