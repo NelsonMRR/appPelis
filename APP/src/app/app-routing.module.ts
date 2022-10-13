@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddMovieComponent } from './pages/admin/add-movie/add-movie.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard/dashboard.component';
+import { ViewMoviesComponent } from './pages/admin/view-movies/view-movies.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -38,13 +40,24 @@ const routes: Routes = [
       {
         path:'profile',
         component:ProfileComponent
+      },
+      {
+        path:'movies',
+        component:ViewMoviesComponent
+      },
+      {
+        path:'add-movies',
+        component:AddMovieComponent
+      },
+      {
+        path:'add-movies/:id',
+        component:AddMovieComponent
       }
     ]
   },
   {
     path:'user-dashboard',
     component:UserDashboardComponent,
-    pathMatch:'full',
     canActivate:[ NormalGuard ],
     children:[
       {

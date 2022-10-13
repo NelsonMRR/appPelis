@@ -71,7 +71,8 @@ export class RestService {
     }
     if (method=='DELETE'){
       result= await firstValueFrom(this.http.delete(environment.api_ruta + path,
-        {'observe':'response', 'headers':{"content-type": "application/json", "Access-Control-Allow-Origin": '*',
+        { 'observe':'response',
+        'headers':{"content-type": "application/json", "Access-Control-Allow-Origin": '*',  
         "Access-Control-Allow-Methods":"GET, POST, PUT, DELETE , OPTIONS"} } ).pipe(catchError(this.handleError))).then(data =>{
           this.dataService.finalizaProceso();
           return data;

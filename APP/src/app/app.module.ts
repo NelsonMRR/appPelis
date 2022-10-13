@@ -16,7 +16,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator'; 
+import { MatSortModule } from '@angular/material/sort';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -28,6 +31,9 @@ import { authInterceptorProviders } from './services/auth.interceptor';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
+import { ViewMoviesComponent } from './pages/admin/view-movies/view-movies.component';
+import { AddMovieComponent } from './pages/admin/add-movie/add-movie.component';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +46,9 @@ import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
     UserDashboardComponent,
     ProfileComponent,
     SidebarComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    ViewMoviesComponent,
+    AddMovieComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +64,11 @@ import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSlideToggleModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
