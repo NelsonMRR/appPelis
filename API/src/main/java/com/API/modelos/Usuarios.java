@@ -36,6 +36,11 @@ public class Usuarios implements UserDetails {
     @JsonIgnore
     private Set<UsuarioPeliculas> usuarioPeliculas = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "usuario_reaccion")
+    @JsonIgnore
+    private Set<UsuarioReacciones> usuarioReacciones = new HashSet<>();
+
+
     public Usuarios(){
 
     }
@@ -182,5 +187,19 @@ public class Usuarios implements UserDetails {
         this.numeroDePeliculas = numeroDePeliculas;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
 
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public Set<UsuarioReacciones> getUsuarioReacciones() {
+        return usuarioReacciones;
+    }
+
+    public void setUsuarioReacciones(Set<UsuarioReacciones> usuarioReacciones) {
+        this.usuarioReacciones = usuarioReacciones;
+    }
 }

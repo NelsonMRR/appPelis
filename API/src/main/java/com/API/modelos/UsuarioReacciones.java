@@ -10,10 +10,10 @@ public class UsuarioReacciones {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Peliculas pelicula;
+    private Peliculas pelicula_reaccion;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Usuarios usuario_pelicula;
+    private Usuarios usuario_reaccion;
 
     private String reaccion;
     private String fecha;
@@ -26,22 +26,6 @@ public class UsuarioReacciones {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Peliculas getPelicula() {
-        return pelicula;
-    }
-
-    public void setPelicula(Peliculas pelicula) {
-        this.pelicula = pelicula;
-    }
-
-    public Usuarios getUsuario_reaccion() {
-        return usuario_pelicula;
-    }
-
-    public void setUsuario_reaccion(Usuarios usuario_pelicula) {
-        this.usuario_pelicula = usuario_pelicula;
     }
 
     public String getReaccion() {
@@ -66,5 +50,21 @@ public class UsuarioReacciones {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    public Peliculas getPelicula_reaccion() {
+        return pelicula_reaccion;
+    }
+
+    public void setPelicula_reaccion(Peliculas pelicula_reaccion) {
+        this.pelicula_reaccion = pelicula_reaccion;
+    }
+
+    public Usuarios getUsuario_reaccion() {
+        return usuario_reaccion;
+    }
+
+    public void setUsuario_reaccion(Usuarios usuario_reaccion) {
+        this.usuario_reaccion = usuario_reaccion;
     }
 }

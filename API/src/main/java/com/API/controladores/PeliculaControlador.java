@@ -3,8 +3,12 @@ package com.API.controladores;
 import com.API.modelos.Peliculas;
 import com.API.servicios.PeliculaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/peliculas")
@@ -16,6 +20,9 @@ public class PeliculaControlador {
 
     @PostMapping("/")
     public ResponseEntity<Peliculas> guardarPelicula(@RequestBody Peliculas peliculas){
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        peliculas.setFecha(formatter.format(date));
         peliculas.setNumeroDeReacciones("0");
         Peliculas peliculaGuardada = peliculaServicio.guardarPelicula(peliculas);
         return ResponseEntity.ok(peliculaGuardada);

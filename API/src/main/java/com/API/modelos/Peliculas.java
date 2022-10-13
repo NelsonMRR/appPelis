@@ -14,6 +14,14 @@ public class Peliculas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "pelicula_usuario")
+    @JsonIgnore
+    private Set<UsuarioPeliculas> usuarioPeliculas = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "pelicula_reaccion")
+    @JsonIgnore
+    private Set<UsuarioReacciones> usuarioReacciones = new HashSet<>();
+
     private String titulo;
     private String descripcion;
     private String imagen;
@@ -103,6 +111,22 @@ public class Peliculas {
 
     public void setNumeroDeReacciones(String numeroDeReacciones) {
         this.numeroDeReacciones = numeroDeReacciones;
+    }
+
+    public Set<UsuarioPeliculas> getUsuarioPeliculas() {
+        return usuarioPeliculas;
+    }
+
+    public void setUsuarioPeliculas(Set<UsuarioPeliculas> usuarioPeliculas) {
+        this.usuarioPeliculas = usuarioPeliculas;
+    }
+
+    public Set<UsuarioReacciones> getUsuarioReacciones() {
+        return usuarioReacciones;
+    }
+
+    public void setUsuarioReacciones(Set<UsuarioReacciones> usuarioReacciones) {
+        this.usuarioReacciones = usuarioReacciones;
     }
 
     public Peliculas() {

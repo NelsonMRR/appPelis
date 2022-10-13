@@ -10,10 +10,10 @@ public class UsuarioPeliculas {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Peliculas pelicula;
+    private Usuarios usuario_pelicula;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Usuarios usuario_pelicula;
+    private Peliculas pelicula_usuario;
 
     private String fecha_inicio;
     private String fecha_fin;
@@ -27,14 +27,6 @@ public class UsuarioPeliculas {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Peliculas getPelicula() {
-        return pelicula;
-    }
-
-    public void setPelicula(Peliculas pelicula) {
-        this.pelicula = pelicula;
     }
 
     public Usuarios getUsuario_pelicula() {
@@ -75,5 +67,13 @@ public class UsuarioPeliculas {
 
     public void setTipo(String tipó) {
         this.tipo = tipo;
+    }
+
+    public Peliculas getPelicula_usuario() {
+        return pelicula_usuario;
+    }
+
+    public void setPelicula_usuario(Peliculas pelicula_usuario) {
+        this.pelicula_usuario = pelicula_usuario;
     }
 }
