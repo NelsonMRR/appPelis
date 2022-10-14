@@ -1,5 +1,6 @@
 package com.API.servicios.impl;
 
+import com.API.modelos.Peliculas;
 import com.API.modelos.UsuarioReacciones;
 import com.API.repositorios.UsuarioReaccionRepositorio;
 import com.API.servicios.UsuarioReaccionServicio;
@@ -37,8 +38,14 @@ public class UsuarioReaccionImplementacion implements UsuarioReaccionServicio {
 
     @Override
     public void eliminarUsuarioReaccion(Long id) {
-        UsuarioReacciones usuarioReacciones = new UsuarioReacciones();
-        usuarioReacciones.setId(id);
-        usuarioReaccionRepositorio.delete(usuarioReacciones);
+        usuarioReaccionRepositorio.deleteById(id);
+    }
+
+    public UsuarioReaccionRepositorio getUsuarioReaccionRepositorio() {
+        return usuarioReaccionRepositorio;
+    }
+
+    public void setUsuarioReaccionRepositorio(UsuarioReaccionRepositorio usuarioReaccionRepositorio) {
+        this.usuarioReaccionRepositorio = usuarioReaccionRepositorio;
     }
 }
