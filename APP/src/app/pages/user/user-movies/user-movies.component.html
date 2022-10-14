@@ -1,0 +1,37 @@
+<div class="bootstrap-wrapper">
+    <div class="container-fluid">
+      <h1>Películas disponibles</h1>
+      <div class="row mt20" *ngIf = "Movies">
+        <div class="col-md-6" *ngFor = "let e of Movies">
+          <mat-card class="mb20">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image">
+              </div>
+              <mat-card-title>
+                {{ e.titulo }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ e.descripcion }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p><b>Precio Venta: </b>{{ e.precio_venta }}.  <b>Stock: </b>{{ e.stock }}.</p>
+              <p><b>Precio Alquiler: </b>{{ e.precio_alquiler }}. <b>Popularidad: </b>{{ e.numeroDeReacciones }}.</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button color="primary" (click)="comprar(e.id)">Comprar</button>
+              <button mat-button color="accent" [routerLink] = "'/user-dashboard/add-alquiler/'+e.id">Alquilar</button>
+              <a (click)="megusta(e.id,e.idReaccion,e.reaccion)"><mat-icon>thumb_up</mat-icon><div *ngIf="e.reaccion == 1">Te gusta</div></a>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+        <div class="col-md-12" *ngIf = "Movies.length == 0">
+          <mat-card>
+            <mat-card-content>
+              <h1>No hay películas agregadas</h1>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,107 @@
+<mat-card>
+    <h1>Usuario</h1>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form>
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input
+                    [(ngModel)] = "Data.username"
+                    type="text"
+                    name="username"
+                    required
+                    readonly="isEditable" 
+                    placeholder="Digite el username"
+                    matInput>
+                </mat-form-field>
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Contraseña</mat-label>
+                    <input
+                    [(ngModel)] = "Data.password"
+                    type="password"
+                    name="password"
+                    required
+                    placeholder="Digite contraseña"
+                    matInput>
+                </mat-form-field>
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Nombre</mat-label>
+                    <input
+                    [(ngModel)] = "Data.nombre"
+                    type="text"
+                    name="nombre"
+                    required
+                    placeholder="Digite nombre"
+                    matInput>
+                </mat-form-field>
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Apellido</mat-label>
+                    <input
+                    [(ngModel)] = "Data.apellido"
+                    type="text"
+                    name="apellido"
+                    required
+                    placeholder="Digite apellido"
+                    matInput>
+                </mat-form-field>
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input
+                    [(ngModel)] = "Data.email"
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="Digite email"
+                    matInput>
+                </mat-form-field>
+
+                <div class="row">
+                    <div class="col-md-6">
+                    <mat-form-field class="w100" appearance="fill">
+                        <mat-label>Telefono</mat-label>
+                        <input
+                        [(ngModel)] = "Data.telefono"
+                        type="text"
+                        name="telefono"
+                        placeholder="Digite teléfono"
+                        matInput>
+                    </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-slide-toggle class="mt20" name="estado" [(ngModel)] = "Data.estado" color="primary">
+                            Estado 
+                        </mat-slide-toggle>
+                    </div>
+                </div>
+
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Imagen</mat-label>
+                    <input
+                    [(ngModel)] = "Data.foto"
+                    type="text"
+                    name="imagen"
+                    required
+                    placeholder="Ingrese imagen"
+                    matInput>
+                </mat-form-field>
+                
+                <mat-form-field appearance="fill" class="mt20 w100">
+                    <mat-label>Tipo</mat-label>
+                    <mat-select name="tipo" [(ngModel)] = "Data.tipo">
+                        <mat-option value="NORMAL">Normal</mat-option>
+                        <mat-option value="ADMINISTRADOR">Administrador</mat-option>
+                    </mat-select>
+                </mat-form-field>
+    
+                <div class="container text-center">
+                    <div *ngIf="botonesAgregar"  class="footer-formulario">
+                        <button mat-raised-button (click)="guardarCuestionario()" color="primary">Guardar</button>
+                    </div>
+                    <div *ngIf="botonesActualizar"  class="footer-formulario">
+                        <button mat-raised-button (click)="actualizarDatos()" color="primary">Actualizar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </mat-card>

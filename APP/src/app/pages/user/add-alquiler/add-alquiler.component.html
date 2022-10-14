@@ -1,0 +1,76 @@
+<mat-card>
+    <h1>Alquilar Película</h1>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form>
+                <mat-form-field class="w100" appearance="fill">
+                    <mat-label>Título</mat-label>
+                    <input
+                    [(ngModel)] = "movieData.titulo"
+                    type="text"
+                    name="titulo"
+                    required
+                    readonly
+                    placeholder="Digite el título"
+                    matInput>
+                </mat-form-field>
+    
+                <div class="row">
+                    <div class="col-md-6">
+                    <mat-form-field class="w100" appearance="fill">
+                        <mat-label>Precio Venta($)</mat-label>
+                        <input
+                        [(ngModel)] = "movieData.precio_venta"
+                        type="number"
+                        readonly
+                        name="precio_venta"
+                        placeholder="Digite precio"
+                        matInput>
+                    </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                    <mat-form-field class="w100" appearance="fill">
+                        <mat-label>Precio Alquiler($)</mat-label>
+                        <input
+                        [(ngModel)] = "movieData.precio_alquiler"
+                        type="number"
+                        readonly
+                        name="precio_alquiler"
+                        placeholder="Digite precio"
+                        matInput>
+                    </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                    <mat-form-field class="w100" appearance="fill">
+                        <mat-label>Fecha Inicio</mat-label>
+                        <input
+                        [(ngModel)] = "movieData.fecha_inicio"
+                        type="date"
+                        name="fecha_inicio"
+                        matInput>
+                    </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="w100" appearance="fill">
+                            <mat-label>Fecha Fin</mat-label>
+                            <input
+                            [(ngModel)] = "movieData.fecha_fin"
+                            type="date"
+                            name="fecha_fin"
+                            matInput>
+                        </mat-form-field>
+                        </div>
+                </div>
+    
+                <div class="container text-center">
+                    <div class="footer-formulario">
+                        <button mat-raised-button (click)="guardarCuestionario()" color="primary">Alquiler</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </mat-card>
