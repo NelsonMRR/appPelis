@@ -1,6 +1,6 @@
 package com.API.servicios;
 
-import com.API.modelos.Peliculas;
+import com.API.excepciones.UsuarioEncontradoExcepcion;
 import com.API.modelos.UsuarioRoles;
 import com.API.modelos.Usuarios;
 
@@ -12,7 +12,11 @@ public interface UsuarioServicio {
 
     Usuarios obtenerUsuarioId(Long id);
 
+    Set<Usuarios> obtenerUsuarios();
+
     public  Usuarios obtenerUsuario(String username);
+
+    Usuarios actualizarUsuario(Usuarios usuarios);
 
     public void eliminarUsuario(Long id);
 }

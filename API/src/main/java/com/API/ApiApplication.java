@@ -10,6 +10,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,10 +37,12 @@ public class ApiApplication implements CommandLineRunner {
 		usuario.setApellido("Rivera");
 		usuario.setUsername("administrador");
 		usuario.setPassword(bCryptPasswordEncoder.encode("admin"));
-		usuario.setEmail("nelson.mrr92@hotmail.com");
-		usuario.setTelefono("72740183");
-		usuario.setPerfil("foto.png");
-
+		usuario.setEmail("prueba@hotmail.com");
+		usuario.setTelefono("12345678");
+		usuario.setFoto("foto.png");
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		usuario.setFecha(formatter.format(date));
 		Roles rol = new Roles();
 		rol. setId(1L);
 		rol.setNombre("ADMINISTRADOR");

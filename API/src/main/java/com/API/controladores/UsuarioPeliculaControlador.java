@@ -49,6 +49,11 @@ public class UsuarioPeliculaControlador {
         return ResponseEntity.ok(usuarioPelicula);
     }
 
+    @GetMapping("/peliculas/")
+    public ResponseEntity<?> obtenerUsuariosPeliculas(){
+        return ResponseEntity.ok(usuarioPeliculaServicio.obtenerUsuarioPeliculas());
+    }
+
     @GetMapping("/{upeliculaId}")
     public  UsuarioPeliculas obtenerUsuarioPelicula(@PathVariable("upeliculaId") Long id){
         return usuarioPeliculaServicio.obtenerUsuarioPelicula(id);

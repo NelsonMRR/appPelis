@@ -9,6 +9,7 @@ import com.API.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Service
@@ -43,8 +44,18 @@ public class UsuarioServicioImplementacion implements UsuarioServicio {
     }
 
     @Override
+    public Usuarios actualizarUsuario(Usuarios usuario){
+        return usuarioRepositorio.save(usuario);
+    }
+
+    @Override
     public Usuarios obtenerUsuarioId(Long id) {
         return usuarioRepositorio.findById(id).get();
+    }
+
+    @Override
+    public Set<Usuarios> obtenerUsuarios() {
+        return new LinkedHashSet<>(usuarioRepositorio.findAll());
     }
 
     @Override

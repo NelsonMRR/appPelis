@@ -19,13 +19,28 @@ public class UsuarioReacciones {
     private String fecha;
     private boolean estado = true;
 
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Peliculas getPelicula_reaccion() {
+        return pelicula_reaccion;
+    }
+
+    public void setPelicula_reaccion(Peliculas pelicula_reaccion) {
+        this.pelicula_reaccion = pelicula_reaccion;
+    }
+
+    public Usuarios getUsuario_reaccion() {
+        return usuario_reaccion;
+    }
+
+    public void setUsuario_reaccion(Usuarios usuario_reaccion) {
+        this.usuario_reaccion = usuario_reaccion;
     }
 
     public String getReaccion() {
@@ -50,21 +65,5 @@ public class UsuarioReacciones {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
-    }
-
-    public Peliculas getPelicula_reaccion() {
-        return pelicula_reaccion;
-    }
-
-    public void setPelicula_reaccion(Peliculas pelicula_reaccion) {
-        this.pelicula_reaccion = pelicula_reaccion;
-    }
-
-    public Usuarios getUsuario_reaccion() {
-        return usuario_reaccion;
-    }
-
-    public void setUsuario_reaccion(Usuarios usuario_reaccion) {
-        this.usuario_reaccion = usuario_reaccion;
     }
 }

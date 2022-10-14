@@ -20,6 +20,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator'; 
 import { MatSortModule } from '@angular/material/sort';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
+import { MatSelectModule } from '@angular/material/select';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -33,6 +34,15 @@ import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { ViewMoviesComponent } from './pages/admin/view-movies/view-movies.component';
 import { AddMovieComponent } from './pages/admin/add-movie/add-movie.component';
+import { AddUserComponent } from './pages/admin/add-user/add-user.component';
+import { ViewUsersComponent } from './pages/admin/view-users/view-users.component';
+import { ViewAlquileresComponent } from './pages/admin/view-alquileres/view-alquileres.component';
+import { ViewComprasComponent } from './pages/admin/view-compras/view-compras.component';
+import { UserSidebarComponent } from './pages/user/user-sidebar/user-sidebar.component';
+import { UserViewMoviesComponent } from './pages/user/user-view-movies/user-view-movies.component';
+import { UserMoviesComponent } from './pages/user/user-movies/user-movies.component';
+import { UserWelcomeComponent } from './pages/user/user-welcome/user-welcome.component';
+import { AddAlquilerComponent } from './pages/user/add-alquiler/add-alquiler.component';
 
 
 @NgModule({
@@ -48,7 +58,16 @@ import { AddMovieComponent } from './pages/admin/add-movie/add-movie.component';
     SidebarComponent,
     WelcomeComponent,
     ViewMoviesComponent,
-    AddMovieComponent
+    AddMovieComponent,
+    AddUserComponent,
+    ViewUsersComponent,
+    ViewAlquileresComponent,
+    ViewComprasComponent,
+    UserSidebarComponent,
+    UserViewMoviesComponent,
+    UserMoviesComponent,
+    UserWelcomeComponent,
+    AddAlquilerComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +87,8 @@ import { AddMovieComponent } from './pages/admin/add-movie/add-movie.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSelectModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

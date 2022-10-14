@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @RestController
 @RequestMapping("/ureacciones")
 @CrossOrigin("*")
@@ -25,6 +28,9 @@ public class UsuarioReaccionControlador {
 
     @PostMapping("/")
     public ResponseEntity<UsuarioReacciones> guardarUsuarioReaccion(@RequestBody UsuarioReacciones usuarioReacciones){
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        usuarioReacciones.setFecha(formatter.format(date));
         return ResponseEntity.ok(usuarioReaccionServicio.guardarUsuarioReaccion(usuarioReacciones));
     }
 
@@ -33,9 +39,20 @@ public class UsuarioReaccionControlador {
         return ResponseEntity.ok(usuarioReaccionServicio.actualizarUsuarioReaccion(usuarioReacciones));
     }
 
+    @GetMapping("/usuarios")
+    public ResponseEntity<?> obtenerUsuariosReacciones(){
+        return ResponseEntity.ok(usuarioReaccionServicio.obtenerUsuarioReacciones());
+    }
+
     @GetMapping("/{reaccionId}")
     public  UsuarioReacciones obtenerUsuarioReaccion(@PathVariable("reaccionId") Long id){
         return usuarioReaccionServicio.obtenerUsuarioReaccion(id);
+    }
+
+    @DeleteMapping("/{reaccionId}")
+    public void eliminarUsuarioReaccion(@PathVariable("reaccionId") Long id){
+        System.out.println(id);
+        usuarioReaccionServicio.eliminarUsuarioReaccion(id);
     }
 
 }

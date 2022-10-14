@@ -43,6 +43,14 @@ public class PeliculaControlador {
         return  peliculaServicio.actualizarPelicula(peliculas);
     }
 
+    public PeliculaServicio getPeliculaServicio() {
+        return peliculaServicio;
+    }
+
+    public void setPeliculaServicio(PeliculaServicio peliculaServicio) {
+        this.peliculaServicio = peliculaServicio;
+    }
+
     @DeleteMapping("/{peliculaId}")
     public void eliminarPelicula(@PathVariable("peliculaId") Long id){
         peliculaServicio.eliminarPelicula(id);

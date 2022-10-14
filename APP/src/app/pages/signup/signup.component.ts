@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
 import Swal from 'sweetalert2';
 
@@ -20,7 +21,8 @@ export class SignupComponent implements OnInit {
   }
   constructor(
     private restService:RestService,
-    private snack:MatSnackBar
+    private snack:MatSnackBar,
+    private router:Router,
     ) { }
 
   ngOnInit(): void {
@@ -41,6 +43,7 @@ export class SignupComponent implements OnInit {
       if (data){
         console.log(data);
         Swal.fire('Usuario guardado','Usuario registrado con exito en el sistema','success');
+        this.router.navigate(['/login']);
       }else {
         return [];
       }
