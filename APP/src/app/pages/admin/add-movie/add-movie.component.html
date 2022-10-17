@@ -70,13 +70,23 @@
 
                 <mat-form-field class="w100" appearance="fill">
                     <mat-label>Imagen</mat-label>
-                    <input
-                    [(ngModel)] = "movieData.imagen"
-                    type="text"
-                    name="imagen"
-                    required
-                    placeholder="Ingrese imagen"
-                    matInput>
+                    <button mat-icon-button matPrefix (click)="f_input.click()">
+                        <mat-icon>attach_file</mat-icon>
+                      </button>
+                            <input 
+                            type="text" 
+                            name="imagen" 
+                            [ngModelOptions]="{standalone: true}" 
+                            readonly 
+                            matInput 
+                            [(ngModel)] = "movieData.imagen"
+                            required />
+                                <input
+                                type="file"
+                                hidden
+                                #f_input
+                                (change)="onFileSelected($event)"
+                                >
                 </mat-form-field>
     
                 <div class="container text-center">

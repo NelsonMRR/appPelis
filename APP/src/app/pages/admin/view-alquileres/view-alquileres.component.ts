@@ -28,7 +28,7 @@ export class ViewAlquileresComponent implements OnInit {
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
-  @ViewChild(MatSort)
+  @ViewChild(MatSort, {static:true})
   sort!: MatSort;
   
   private DATA: Users[] =[];
@@ -60,17 +60,27 @@ export class ViewAlquileresComponent implements OnInit {
       let array = data['body'];
       let datos = [];
       for (let i = 0; i < array.length; i++) {
-        datos.push({
-          'id': array[i]['id'],
-          'username': array[i]['username'],
-          'pelicula': array[i]['pelicula'],
-          'precio': array[i]['precio'],
-          'fecha_inicio': array[i]['fecha_inicio'],
-          'fecha_fin': array[i]['fecha_fin'],
-          'estado': array[i]['estado']
-        });
+        if(array[i]['tipo'] == 2){
+          let estado='';
+          if (array[i]['estado']) {
+            estado = 'Disponible';
+          }else{
+            estado = 'Finalizado';
+          }
+          datos.push({
+            'id': array[i]['id'],
+            'username': array[i]['usuario_pelicula']['username'],
+            'pelicula': array[i]['pelicula_usuario']['titulo'],
+            'precio': array[i]['pelicula_usuario']['precio_alquiler'],
+            'fecha_inicio': array[i]['fecha_inicio'],
+            'fecha_fin': array[i]['fecha_fin'],
+            'estado': estado
+          });
+        }
       }
       this.DATA = datos;
+      
+    }).finally(()=>{
       this.dataSource = new MatTableDataSource(this.DATA);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

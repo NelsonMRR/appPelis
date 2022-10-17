@@ -22,6 +22,10 @@ public class Peliculas {
     @JsonIgnore
     private Set<UsuarioReacciones> usuarioReacciones = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "pelicula_historial")
+    @JsonIgnore
+    private Set<HistorialPeliculas> historialPeliculas = new HashSet<>();
+
     private String titulo;
     private String descripcion;
     private String imagen;
@@ -32,6 +36,15 @@ public class Peliculas {
     private boolean estado = false;
     private String numeroDeReacciones;
 
+    public Peliculas(String titulo,String descripcion,String imagen,String stock,String precio_alquiler,String precio_venta,boolean estado){
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.imagen = imagen;
+        this.stock = stock;
+        this.precio_alquiler = precio_alquiler;
+        this.precio_venta = precio_venta;
+        this.estado = estado;
+    }
 
     public Long getId() {
         return id;
@@ -127,6 +140,14 @@ public class Peliculas {
 
     public void setUsuarioReacciones(Set<UsuarioReacciones> usuarioReacciones) {
         this.usuarioReacciones = usuarioReacciones;
+    }
+
+    public Set<HistorialPeliculas> getHistorialPeliculas() {
+        return historialPeliculas;
+    }
+
+    public void setHistorialPeliculas(Set<HistorialPeliculas> historialPeliculas) {
+        this.historialPeliculas = historialPeliculas;
     }
 
     public Peliculas() {

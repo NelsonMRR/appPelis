@@ -1,6 +1,5 @@
 package com.API.controladores;
 
-import com.API.excepciones.UsuarioEncontradoExcepcion;
 import com.API.modelos.*;
 import com.API.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;

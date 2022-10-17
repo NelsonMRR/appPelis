@@ -23,10 +23,25 @@ export class AddUserComponent implements OnInit {
     nombre:'',
     apellido:'',
     email:'',
-    foto:'',
     telefono:'',
     estado:true,
     tipo:''
+  }
+  DataUsuario = {
+    id:'',
+    username:'',
+    password:'',
+    nombre:'',
+    apellido:'',
+    email:'',
+    telefono:'',
+    estado:true,
+    tipo:''
+  }
+  DataRol = {
+    id:'',
+    usuario:'',
+    rol:0
   }
   id=0;
   constructor(
@@ -54,7 +69,6 @@ export class AddUserComponent implements OnInit {
           nombre:'',
           apellido:'',
           email:'',
-          foto:'',
           telefono:'',
           estado:true,
           tipo:''
@@ -68,29 +82,33 @@ export class AddUserComponent implements OnInit {
   }
 
   public actualizarDatos(){
-    let adminData = []; let tipo = '';
+    let adminData = []; let tipo = 0;
     if (this.Data['tipo']=='ADMINISTRADOR') {
-      tipo = 'ADMINISTRADOR';
+      tipo = 1;
     }else{
-      tipo ='NORMAL';
+      tipo =2;
     }
-    adminData.push({
+    this.DataUsuario= {
       'id':this.Data['id'],
       'username':this.Data['username'],
       'password':this.Data['password'],
       'nombre':this.Data['nombre'],
       'apellido':this.Data['apellido'],
       'email':this.Data['email'],
-      'foto':this.Data['foto'],
       'telefono':this.Data['telefono'],
       'estado':this.Data['estado'],
-      'tipo':this.Data['tipo'],
-      'authorities':{
-        'authority':tipo
-      }
-    })
-    this.restService.RestApi('PUT','/usuarios/',this.Data).then((data:any) => {
-        Swal.fire('Usuario actualizado','El usuario ha sido actualizada con éxito','success').then(
+      'tipo':this.Data['tipo']
+    }
+    this.DataRol= {
+      'id':this.Data['id'],
+      'usuario':this.Data['id'],
+      'rol':tipo
+    }
+    this.restService.RestApi('PUT','/usuarios/',this.DataUsuario).then((data:any) => {
+      // this.restService.RestApi('PUT','/roles/',this.DataRol).then((data1:any) => {
+        
+      // })
+      Swal.fire('Usuario actualizado','El usuario ha sido actualizada con éxito','success').then(
           (e) => {
             this.router.navigate(['/admin/users']);
           }
@@ -110,28 +128,24 @@ export class AddUserComponent implements OnInit {
       this.botonesAgregar=false;
       this.botonesActualizar=true;
       this.restService.RestApi('GET','/usuarios/'+this.id,{}).then((data:any) => {
-        
-        let cargaData = []; let tipo = '';
+        let tipo = '';
           if (data['body']['authorities'][0]['authority']=='ADMINISTRADOR') {
             tipo = 'ADMINISTRADOR';
           }else{
             tipo ='NORMAL';
           }
-          cargaData.push({
+          this.Data={
             'id':data['body']['id'],
             'username':data['body']['username'],
             'password':data['body']['password'],
             'nombre':data['body']['nombre'],
             'apellido':data['body']['apellido'],
             'email':data['body']['email'],
-            'foto':data['body']['foto'],
             'telefono':data['body']['telefono'],
             'estado':data['body']['estado'],
             'tipo':tipo
-          })
-          this.Data = data['body'];
+          }
           this.isEditable = true;
-          console.log(cargaData);
       },
       (error) => {
         Swal.fire('Error','Error al cargar usuario','error');

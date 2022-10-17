@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.Set;
 
 public interface UsuarioReaccionRepositorio extends JpaRepository<UsuarioReacciones, Long> {
-    /*Set<UsuarioReacciones> findByUsuarioReaccion(UsuarioReacciones usuarioReacciones);*/
+
 }

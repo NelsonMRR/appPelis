@@ -12,7 +12,6 @@ export interface Users {
   apellido: string;
   email: string;
   telefono: string;
-  foto: string;
   fecha: string;
   tipo: string;
   numeroDePeliculas: number;
@@ -40,7 +39,6 @@ export class ViewUsersComponent implements OnInit {
     'apellido', 
     'email', 
     'telefono', 
-    'foto',
     'fecha', 
     'tipo',
     'estado',
@@ -79,7 +77,6 @@ export class ViewUsersComponent implements OnInit {
           'apellido': array[i]['apellido'],
           'email': array[i]['email'],
           'telefono': array[i]['telefono'],
-          'foto': array[i]['foto'],
           'fecha': array[i]['fecha'],
           'tipo': array[i]['authorities'][0]['authority'],
           'numeroDePeliculas': array[i]['numeroDePeliculas'],

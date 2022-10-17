@@ -1,6 +1,7 @@
 package com.API.servicios.impl;
 
 import com.API.modelos.Peliculas;
+import com.API.modelos.UsuarioPeliculas;
 import com.API.modelos.UsuarioReacciones;
 import com.API.repositorios.UsuarioReaccionRepositorio;
 import com.API.servicios.UsuarioReaccionServicio;
@@ -36,10 +37,6 @@ public class UsuarioReaccionImplementacion implements UsuarioReaccionServicio {
         return new LinkedHashSet<>(usuarioReaccionRepositorio.findAll());
     }
 
-    @Override
-    public void eliminarUsuarioReaccion(Long id) {
-        usuarioReaccionRepositorio.deleteById(id);
-    }
 
     public UsuarioReaccionRepositorio getUsuarioReaccionRepositorio() {
         return usuarioReaccionRepositorio;
@@ -47,5 +44,11 @@ public class UsuarioReaccionImplementacion implements UsuarioReaccionServicio {
 
     public void setUsuarioReaccionRepositorio(UsuarioReaccionRepositorio usuarioReaccionRepositorio) {
         this.usuarioReaccionRepositorio = usuarioReaccionRepositorio;
+    }
+    @Override
+    public void eliminarUsuarioReaccion(Long id) {
+        UsuarioReacciones usuarioReacciones = new UsuarioReacciones();
+        usuarioReacciones.setId(id);
+        usuarioReaccionRepositorio.delete(usuarioReacciones);
     }
 }

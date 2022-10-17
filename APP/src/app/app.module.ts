@@ -43,6 +43,8 @@ import { UserViewMoviesComponent } from './pages/user/user-view-movies/user-view
 import { UserMoviesComponent } from './pages/user/user-movies/user-movies.component';
 import { UserWelcomeComponent } from './pages/user/user-welcome/user-welcome.component';
 import { AddAlquilerComponent } from './pages/user/add-alquiler/add-alquiler.component';
+import { ViewHistorialMoviesComponent } from './pages/admin/view-historial-movies/view-historial-movies.component';
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 
 
 @NgModule({
@@ -67,7 +69,8 @@ import { AddAlquilerComponent } from './pages/user/add-alquiler/add-alquiler.com
     UserViewMoviesComponent,
     UserMoviesComponent,
     UserWelcomeComponent,
-    AddAlquilerComponent
+    AddAlquilerComponent,
+    ViewHistorialMoviesComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +92,10 @@ import { AddAlquilerComponent } from './pages/user/add-alquiler/add-alquiler.com
     MatSortModule,
     MatSlideToggleModule,
     MatSelectModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground:true
+    })
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

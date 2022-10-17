@@ -5,6 +5,7 @@ import { AddUserComponent } from './pages/admin/add-user/add-user.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard/dashboard.component';
 import { ViewAlquileresComponent } from './pages/admin/view-alquileres/view-alquileres.component';
 import { ViewComprasComponent } from './pages/admin/view-compras/view-compras.component';
+import { ViewHistorialMoviesComponent } from './pages/admin/view-historial-movies/view-historial-movies.component';
 import { ViewMoviesComponent } from './pages/admin/view-movies/view-movies.component';
 import { ViewUsersComponent } from './pages/admin/view-users/view-users.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
@@ -80,6 +81,10 @@ const routes: Routes = [
       {
         path:'compras',
         component:ViewComprasComponent
+      },
+      {
+        path:'historial-peliculas/:id',
+        component:ViewHistorialMoviesComponent
       }
     ]
   },

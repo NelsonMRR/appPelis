@@ -5,7 +5,8 @@
         <div class="col-md-6" *ngFor = "let e of Movies">
           <mat-card class="mb20">
             <mat-card-header>
-              <div mat-card-avatar class="example-header-image">
+              <div mat-card-avatar class="">
+                <img src="" [attr.src]="obtenerImagen(e.imagenPortada)" alt="Imagen" style="width:100%">
               </div>
               <mat-card-title>
                 {{ e.titulo }}

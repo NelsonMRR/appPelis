@@ -40,6 +40,10 @@ public class Usuarios implements UserDetails {
     @JsonIgnore
     private Set<UsuarioReacciones> usuarioReacciones = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "usuario_historial")
+    @JsonIgnore
+    private Set<HistorialPeliculas> historialPeliculas = new HashSet<>();
+
 
     public Usuarios(){
 
@@ -202,4 +206,13 @@ public class Usuarios implements UserDetails {
     public void setUsuarioReacciones(Set<UsuarioReacciones> usuarioReacciones) {
         this.usuarioReacciones = usuarioReacciones;
     }
+
+    public Set<HistorialPeliculas> getHistorialPeliculas() {
+        return historialPeliculas;
+    }
+
+    public void setHistorialPeliculas(Set<HistorialPeliculas> historialPeliculas) {
+        this.historialPeliculas = historialPeliculas;
+    }
+
 }

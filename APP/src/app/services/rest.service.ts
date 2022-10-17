@@ -86,6 +86,20 @@ export class RestService {
           this.dataService.finalizaProceso();
           return data;} ).finally(() =>  this.dataService.finalizaProceso());
     }  
+    if (method=='MOVIE-POST'){
+      // console.log('TOKEN ES ' + this.token );
+      result= await firstValueFrom(this.http.post(environment.api_ruta + path, payload).pipe(catchError(this.handleError))).then(resp =>{
+          this.dataService.finalizaProceso();
+          return  resp;
+        }).finally(()=>  this.dataService.finalizaProceso());
+    }
+    if (method=='MOVIE-PUT'){
+      // console.log('TOKEN ES ' + this.token );
+      result= await firstValueFrom(this.http.put(environment.api_ruta + path, payload).pipe(catchError(this.handleError))).then(resp =>{
+          this.dataService.finalizaProceso();
+          return  resp;
+        }).finally(()=>  this.dataService.finalizaProceso());
+    }
     return result;
   }
 

@@ -37,6 +37,14 @@ public class UsuarioPeliculas {
         this.usuario_pelicula = usuario_pelicula;
     }
 
+    public Peliculas getPelicula_usuario() {
+        return pelicula_usuario;
+    }
+
+    public void setPelicula_usuario(Peliculas pelicula_usuario) {
+        this.pelicula_usuario = pelicula_usuario;
+    }
+
     public String getFecha_inicio() {
         return fecha_inicio;
     }
@@ -61,19 +69,11 @@ public class UsuarioPeliculas {
         this.estado = estado;
     }
 
-    public Long getTipo() {
-        return id;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTipo(String tipó) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public Peliculas getPelicula_usuario() {
-        return pelicula_usuario;
-    }
-
-    public void setPelicula_usuario(Peliculas pelicula_usuario) {
-        this.pelicula_usuario = pelicula_usuario;
     }
 }

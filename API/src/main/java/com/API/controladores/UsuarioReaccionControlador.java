@@ -51,7 +51,6 @@ public class UsuarioReaccionControlador {
 
     @DeleteMapping("/{reaccionId}")
     public void eliminarUsuarioReaccion(@PathVariable("reaccionId") Long id){
-        System.out.println(id);
         usuarioReaccionServicio.eliminarUsuarioReaccion(id);
     }
 

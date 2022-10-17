@@ -5,7 +5,8 @@
         <div class="col-md-6" *ngFor = "let e of DatosU">
           <mat-card class="mb20">
             <mat-card-header>
-              <div mat-card-avatar class="example-header-image">
+              <div mat-card-avatar class="">
+                <img src="" [attr.src]="obtenerImagen(e.imagenPortada)" alt="Imagen" style="width:100%">
               </div>
               <mat-card-title>
                 {{ e.titulo }}
@@ -15,12 +16,13 @@
               </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
-              <p><b>Fecha Inicio: </b>{{ e.fecha_inicio }}.  <b>Fecha Fin: </b>{{ e.fecha_fin }}.</p>
+              <p *ngIf="e.tipo == 1"><b>Fecha Compra: </b>{{ e.fecha_inicio }}.  <b>Tipo: </b>Compra.</p>
+              <p *ngIf="e.tipo == 2"><b>Fecha Inicio: </b>{{ e.fecha_inicio }}.  <b>Fecha Fin: </b>{{ e.fecha_fin }}. <b>Tipo: </b>Alquiler.</p>
               <p><b>Precio Alquiler: </b>{{ e.precio_alquiler }}. <b>Popularidad: </b>{{ e.numeroDeReacciones }}.</p>
               <div *ngIf="e.pagoMora">Cobro por retraso: $50.0</div>
             </mat-card-content>
             <mat-card-actions>
-              <div *ngIf="e.tipo == 2"><button mat-button color="accent">Devolver</button></div>
+              <div *ngIf="e.tipo == 2"><button mat-button color="accent" (click)="devolver(e.idUsuarioP, e.id)">Devolver</button></div>
               <a (click)="megusta(e.id,e.idReaccion,e.reaccion)"><mat-icon>thumb_up</mat-icon><div *ngIf="e.reaccion == 1">Me gusta</div></a>
             </mat-card-actions>
           </mat-card>

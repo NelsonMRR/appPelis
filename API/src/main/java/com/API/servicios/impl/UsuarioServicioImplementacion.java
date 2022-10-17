@@ -5,6 +5,7 @@ import com.API.modelos.UsuarioRoles;
 import com.API.modelos.Usuarios;
 import com.API.repositorios.RolRepositorio;
 import com.API.repositorios.UsuarioRepositorio;
+import com.API.repositorios.UsuarioRolesRepositorio;
 import com.API.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,8 +41,10 @@ public class UsuarioServicioImplementacion implements UsuarioServicio {
 
     @Override
     public Usuarios obtenerUsuario(String username) {
+
         return usuarioRepositorio.findByUsername(username);
     }
+
 
     @Override
     public Usuarios actualizarUsuario(Usuarios usuario){
