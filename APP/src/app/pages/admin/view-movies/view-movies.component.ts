@@ -35,7 +35,17 @@ export class ViewMoviesComponent implements OnInit  {
   sort!: MatSort;
   
   private DATA: Movies[] =[];
-  displayedColumns: string[] = ['titulo', 'descripcion', 'imagen', 'stock', 'precio_alquiler', 'precio_venta','fecha', 'estado','numeroDeReacciones','opciones'];
+  displayedColumns: string[] = [
+    'titulo',
+    'descripcion',
+    'imagen',
+    'stock',
+    'precio_alquiler',
+    'precio_venta',
+    'fecha',
+    'estado',
+    'numeroDeReacciones',
+    'opciones'];
   //dataSource = this.DATA;
 
   constructor(private restService:RestService) { 
@@ -50,6 +60,10 @@ export class ViewMoviesComponent implements OnInit  {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  activarSort(){
+    this.dataSource.sort = this.sort;
   }
 
   getMovies(){
