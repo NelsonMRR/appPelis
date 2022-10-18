@@ -8,6 +8,11 @@ Se utilizo:
 
 -[InstalarPaquetes] dentro de la carpeta APP ejecute el comand:npm install
 
+Credenciales que estan en la bd de postgre para usar en la app:
+Usuario admin:  username: administrador, contraseña: admin.
+Usuario normal: username: mauricio, contraseña: 1234
+
+
 -[CorrerAPP] dentro de la carpeta APP ejecute el comand:ng serve
 
 # BACKEND
@@ -16,3 +21,7 @@ Se utilizo:
 -[EditorIDE] IntelliJ IDEA 2022.2.3 (Community Edition)
 
 -[InstalarPaquetes] Al abrir el proyecto API desde el Ide Empieza a instalar las dependencias necesarias. Al terminar se podra ejecutar el server.
+
+En carpeta Base de datos se encuentra el volcado de postgre.
+
+Usuario postgre: postgres, contraseña: admin
