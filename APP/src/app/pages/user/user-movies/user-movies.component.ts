@@ -32,7 +32,7 @@ export class UserMoviesComponent implements OnInit {
       for (let i = 0; i < array.length; i++) { let imageSource = '';
         let idReaccion = 0; let reaccion = 0; 
         this.http.get(environment['api_ruta']+'/peliculas/imagenes/pelicula'+array[i]['id'],{responseType: 'text' }).subscribe(data1=>{
-          this.imagenBase64 = data1;console.log(this.imagenBase64);
+          this.imagenBase64 = data1;
         
           imageSource = 'data:image/jpeg;base64, '+this.imagenBase64+'';
           for (let j = 0; j < this.Reacciones.length; j++) {
@@ -121,7 +121,7 @@ export class UserMoviesComponent implements OnInit {
     if (reaccion == 1) {
       this.restService.RestApi('DELETE','/ureacciones/'+idReaccion,{}).then((data:any)=>{
         this.restService.RestApi('DELETE','/ureacciones/'+idReaccion,{}).then((data:any)=>{
-          this.restService.RestApi('PUT','/peliculas/',peli).then((data:any)=>{
+          this.restService.RestApi('PUT','/peliculas/likes/',peli).then((data:any)=>{
             this.getReacciones();
           })
         })
@@ -138,7 +138,7 @@ export class UserMoviesComponent implements OnInit {
         "estado":true
       };
       this.restService.RestApi('POST','/ureacciones/',reaccionDatos).then((data:any)=>{
-        this.restService.RestApi('PUT','/peliculas/',peli).then((data:any)=>{
+        this.restService.RestApi('PUT','/peliculas/likes/',peli).then((data:any)=>{
           this.getReacciones();
         })
       })

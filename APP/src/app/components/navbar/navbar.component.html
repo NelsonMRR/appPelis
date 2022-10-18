@@ -37,14 +37,13 @@
   >
     Cerrar sesión
   </a>
-  <button
+  <a
     *ngIf = "isLoggedIn && user"
     mat-button
     style="margin-right: 10px"
     class="example-icon favorite-icon"
     aria-label="Example icon-button with heart icon"
-    [routerLink] = "'/admin/profile'"
   >
     {{ user.username }}
-  </button>
+</a>
 </mat-toolbar>

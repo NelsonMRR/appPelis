@@ -85,15 +85,23 @@ public class PeliculaControlador {
 
     @PutMapping("/")
     public Peliculas actualizarPelicula(@RequestParam("pelicula") String strPelicula, @RequestParam("fichero") MultipartFile multipartFile) throws IOException {
-        Gson gson = new Gson();
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        String uploadDir = "imagenes/movies";
+
+        Gson gson = new Gson();System.out.println(gson.fromJson(strPelicula, Peliculas.class));
         Peliculas peliculas = gson.fromJson(strPelicula, Peliculas.class);
-        if (multipartFile != null){
-            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-            String uploadDir = "imagenes/movies";
-            peliculas.setImagen(fileName);
-            //Peliculas pelicula actualizada = peliculaServicio.actualizarPelicula(peliculas);
-            PeliculaServicio.saveImagen(uploadDir, peliculas.getId(), fileName, multipartFile);
-        }
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        peliculas.setFecha(formatter.format(date));
+        peliculas.setNumeroDeReacciones("0");
+
+        peliculas.setImagen(fileName);
+        PeliculaServicio.saveImagen(uploadDir, peliculas.getId(), fileName, multipartFile);
+        return  peliculaServicio.actualizarPelicula(peliculas);
+    }
+
+    @PutMapping("/likes")
+    public Peliculas actualizarPelicula(@RequestBody Peliculas peliculas){
         return  peliculaServicio.actualizarPelicula(peliculas);
     }
 

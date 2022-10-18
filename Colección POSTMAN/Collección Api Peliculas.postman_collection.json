@@ -1,0 +1,682 @@
+{
+	"info": {
+		"_postman_id": "f59b1a53-d600-4fbd-91bb-5f8963f76898",
+		"name": "Collección Api Peliculas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23770260"
+	},
+	"item": [
+		{
+			"name": "Creación Usuarios",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"mauricio\",\r\n    \"password\":\"1234\",\r\n    \"nombre\":\"Mauricio\",\r\n    \"apellido\":\"Rivera\",\r\n    \"email\":\"nelson@hotmail.com\",\r\n    \"perfil\":\"normal.png\",\r\n    \"telefono\":\"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Usuarios Por Username",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NTY0MzQ4LCJpYXQiOjE2NjU1MjgzNDh9.HJC8XZMXz04yPNwDtqTegSoF3xbJ0q_QNh1sbawpago",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/administrador",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"administrador"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Usuarios Por Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NTY0MzQ4LCJpYXQiOjE2NjU1MjgzNDh9.HJC8XZMXz04yPNwDtqTegSoF3xbJ0q_QNh1sbawpago",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/usuarios/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generar Token Para Login Y Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"administrador\",\r\n    \"password\":\"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/generar-token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"generar-token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Extraer Datos Del Actual Usuario Logueado Con Token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NDc0MTUwLCJpYXQiOjE2NjU0MzgxNTB9.0HxB_BKDnU97C49EhY1uZmFjtrQiApQ5NsBbVD3xbCM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actual-usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actual-usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creación Peliculas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NTQ1ODk3LCJpYXQiOjE2NjU1MDk4OTd9.KUVf3ZtqB_6vlBEHA9XGiOkvmwah4Jc7pufw0Y5ZOh8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\":\"Los Avengers\",\r\n    \"descripcion\":\"Pelicula de vengadores\",\r\n    \"imagen\":\"foto.png\",\r\n    \"stock\":\"20\",\r\n    \"precio_alquiler\":\"10\",\r\n    \"precio_venta\":\"50\",\r\n    \"fecha\":\"2022-10-11\",\r\n    \"estado\":true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/peliculas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"peliculas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Pelicula Por Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NTQ1ODk3LCJpYXQiOjE2NjU1MDk4OTd9.KUVf3ZtqB_6vlBEHA9XGiOkvmwah4Jc7pufw0Y5ZOh8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/peliculas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"peliculas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar Pelicula",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NTQ1ODk3LCJpYXQiOjE2NjU1MDk4OTd9.KUVf3ZtqB_6vlBEHA9XGiOkvmwah4Jc7pufw0Y5ZOh8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"id\": 1,\r\n    \"titulo\":\"Los Avengers\",\r\n    \"descripcion\":\"Pelicula de vengadores\",\r\n    \"imagen\":\"foto.png\",\r\n    \"stock\":\"20\",\r\n    \"precio_alquiler\":\"10\",\r\n    \"precio_venta\":\"50\",\r\n    \"fecha\":\"2022-10-11\",\r\n    \"estado\":false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/peliculas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"peliculas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Pelicula",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NTQ1ODk3LCJpYXQiOjE2NjU1MDk4OTd9.KUVf3ZtqB_6vlBEHA9XGiOkvmwah4Jc7pufw0Y5ZOh8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/peliculas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"peliculas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Usuario Pelicula",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NTQ1ODk3LCJpYXQiOjE2NjU1MDk4OTd9.KUVf3ZtqB_6vlBEHA9XGiOkvmwah4Jc7pufw0Y5ZOh8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pelicula\":{\r\n        \"id\":\"2\"\r\n        },\r\n    \"usuario_pelicula\":{\r\n        \"id\":\"8\"\r\n        },\r\n    \"fecha_inicio\": \"2022-10-11\",\r\n    \"fecha_fin\":\"2022-10-12\",\r\n    \"estado\":true,\r\n    \"tipo\":\"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/upeliculas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"upeliculas",
+						""
+					]
+				},
+				"description": "Permite crear el enlace de una pelicula o muchas con el usuario."
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Usuario Pelicula",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NTQ1ODk3LCJpYXQiOjE2NjU1MDk4OTd9.KUVf3ZtqB_6vlBEHA9XGiOkvmwah4Jc7pufw0Y5ZOh8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/upeliculas/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"upeliculas",
+						"5"
+					]
+				},
+				"description": "Obtener los datos del usuario y la pelicula asignada."
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener La Lista De Peliculas Por Id Usuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NTY0MzQ4LCJpYXQiOjE2NjU1MjgzNDh9.HJC8XZMXz04yPNwDtqTegSoF3xbJ0q_QNh1sbawpago",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/upeliculas/peliculas/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"upeliculas",
+						"peliculas",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Usuario Reaccion",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NTY0MzQ4LCJpYXQiOjE2NjU1MjgzNDh9.HJC8XZMXz04yPNwDtqTegSoF3xbJ0q_QNh1sbawpago",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"pelicula\":{\r\n        \"id\":\"2\"\r\n        },\r\n    \"usuario_reaccion\":{\r\n        \"id\":\"8\"\r\n        },\r\n    \"reaccion\":\"1\",\r\n    \"fecha\": \"2022-10-11\",\r\n    \"estado\":true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ureacciones/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ureacciones",
+						""
+					]
+				},
+				"description": "Crea el enlace de la reaccion del usuario con la pelicula."
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Usuario Reaccion",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NTY0MzQ4LCJpYXQiOjE2NjU1MjgzNDh9.HJC8XZMXz04yPNwDtqTegSoF3xbJ0q_QNh1sbawpago",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ureacciones/14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ureacciones",
+						"14"
+					]
+				},
+				"description": "Se obtiene el enlace entre usuario y pelicula para tener la reaccion."
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Peliculas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NTkyOTkzLCJpYXQiOjE2NjU1NTY5OTN9.w8hjqTYhBUsywWajW3CrGT2pYuoGTYZ8uuemy-M9CGg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"id\": 1,\r\n    \"titulo\":\"Los Avengers\",\r\n    \"descripcion\":\"Pelicula de vengadores\",\r\n    \"imagen\":\"foto.png\",\r\n    \"stock\":\"20\",\r\n    \"precio_alquiler\":\"10\",\r\n    \"precio_venta\":\"50\",\r\n    \"fecha\":\"2022-10-11\",\r\n    \"estado\":false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/peliculas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"peliculas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Usuarios",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NjY0OTc1LCJpYXQiOjE2NjU2Mjg5NzV9.qv3MKvGwCUPToYH10kn7R1Daz2CH052S3o7zEBfgzWw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/usuarios/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Reaccion Pot Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NzUwMDc5LCJpYXQiOjE2NjU3MTQwNzl9.DinxZrDNmhmwnMj_xwPLuwpepxqzyPW2uFrRqNGRmhk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ureacciones/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ureacciones",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Registros Usuarios Peliculas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NzAyNTYzLCJpYXQiOjE2NjU2NjY1NjN9.zqvA5HVdTQKs9jquFrY285Xv01cdGNXMXqwRPU3JPaw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/upeliculas/peliculas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"upeliculas",
+						"peliculas",
+						""
+					]
+				},
+				"description": "Registros de ventas y alquileres de peliculas"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Historial Peliculas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY1NzUwMDc5LCJpYXQiOjE2NjU3MTQwNzl9.DinxZrDNmhmwnMj_xwPLuwpepxqzyPW2uFrRqNGRmhk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usuario_historial\":{\r\n        \"id\":\"1\"\r\n        },\r\n    \"pelicula_historial\":{\r\n        \"id\":\"1\"\r\n        },\r\n    \"titulo_anterior\": \"anterior\",\r\n    \"titulo_nuevo\":\"nuevo\",\r\n    \"precio_venta_anterior\": \"anterior\",\r\n    \"precio_venta_nuevo\":\"nuevo\",\r\n    \"precio_alquiler_anterior\": \"anterior\",\r\n    \"precio_alquiler_nuevo\":\"nuevo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/historial_peliculas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"historial_peliculas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todo el historial de cambios peliculas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjY2MDU0MzMxLCJpYXQiOjE2NjYwMTgzMzF9.8qkYkKCoZyjlpIgPp4Z2Bu49oNHbnYSthhIglIrSk7E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/historial_peliculas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"historial_peliculas",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

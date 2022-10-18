@@ -7,7 +7,7 @@ export const environment = {
   env: 'DEV',
   apiUrl:'',
   build:'1',
-  appVersion: '0.1',
+  appVersion: '1.0',
   api_ruta: 'http://localhost:8080',
   api_key: ''
 };

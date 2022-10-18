@@ -1,0 +1,619 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.5
+-- Dumped by pg_dump version 14.5
+
+-- Started on 2022-10-17 18:55:25
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 221 (class 1259 OID 16719)
+-- Name: historial_peliculas; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.historial_peliculas (
+    id bigint NOT NULL,
+    fecha character varying(255),
+    precio_alquiler_anterior character varying(255),
+    precio_alquiler_nuevo character varying(255),
+    precio_venta_anterior character varying(255),
+    precio_venta_nuevo character varying(255),
+    titulo_anterior character varying(255),
+    titulo_nuevo character varying(255),
+    pelicula_historial_id bigint,
+    usuario_historial_id bigint
+);
+
+
+ALTER TABLE public.historial_peliculas OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 16718)
+-- Name: historial_peliculas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.historial_peliculas_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.historial_peliculas_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3378 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: historial_peliculas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.historial_peliculas_id_seq OWNED BY public.historial_peliculas.id;
+
+
+--
+-- TOC entry 210 (class 1259 OID 16637)
+-- Name: peliculas; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.peliculas (
+    id bigint NOT NULL,
+    descripcion character varying(255),
+    estado boolean NOT NULL,
+    fecha character varying(255),
+    imagen character varying(255),
+    numero_de_reacciones character varying(255),
+    precio_alquiler character varying(255),
+    precio_venta character varying(255),
+    stock character varying(255),
+    titulo character varying(255)
+);
+
+
+ALTER TABLE public.peliculas OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 16636)
+-- Name: peliculas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.peliculas_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.peliculas_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3379 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: peliculas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.peliculas_id_seq OWNED BY public.peliculas.id;
+
+
+--
+-- TOC entry 211 (class 1259 OID 16645)
+-- Name: roles; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.roles (
+    id bigint NOT NULL,
+    nombre character varying(255)
+);
+
+
+ALTER TABLE public.roles OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 16651)
+-- Name: usuario_peliculas; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.usuario_peliculas (
+    id bigint NOT NULL,
+    estado boolean NOT NULL,
+    fecha_fin character varying(255),
+    fecha_inicio character varying(255),
+    tipo character varying(255),
+    pelicula_usuario_id bigint,
+    usuario_pelicula_id bigint
+);
+
+
+ALTER TABLE public.usuario_peliculas OWNER TO postgres;
+
+--
+-- TOC entry 212 (class 1259 OID 16650)
+-- Name: usuario_peliculas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.usuario_peliculas_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.usuario_peliculas_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3380 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: usuario_peliculas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.usuario_peliculas_id_seq OWNED BY public.usuario_peliculas.id;
+
+
+--
+-- TOC entry 215 (class 1259 OID 16660)
+-- Name: usuario_reacciones; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.usuario_reacciones (
+    id bigint NOT NULL,
+    estado boolean NOT NULL,
+    fecha character varying(255),
+    reaccion character varying(255),
+    pelicula_reaccion_id bigint,
+    usuario_reaccion_id bigint
+);
+
+
+ALTER TABLE public.usuario_reacciones OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 16659)
+-- Name: usuario_reacciones_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.usuario_reacciones_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.usuario_reacciones_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3381 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: usuario_reacciones_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.usuario_reacciones_id_seq OWNED BY public.usuario_reacciones.id;
+
+
+--
+-- TOC entry 217 (class 1259 OID 16669)
+-- Name: usuario_roles; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.usuario_roles (
+    id bigint NOT NULL,
+    rol_id bigint,
+    usuario_id bigint
+);
+
+
+ALTER TABLE public.usuario_roles OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 16668)
+-- Name: usuario_roles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.usuario_roles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.usuario_roles_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3382 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: usuario_roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.usuario_roles_id_seq OWNED BY public.usuario_roles.id;
+
+
+--
+-- TOC entry 219 (class 1259 OID 16676)
+-- Name: usuarios; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.usuarios (
+    id bigint NOT NULL,
+    apellido character varying(255),
+    email character varying(255),
+    estado boolean NOT NULL,
+    fecha character varying(255),
+    foto character varying(255),
+    nombre character varying(255),
+    numero_de_peliculas character varying(255),
+    password character varying(255),
+    telefono character varying(255),
+    username character varying(255)
+);
+
+
+ALTER TABLE public.usuarios OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 16675)
+-- Name: usuarios_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.usuarios_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.usuarios_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3383 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: usuarios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.usuarios_id_seq OWNED BY public.usuarios.id;
+
+
+--
+-- TOC entry 3198 (class 2604 OID 16722)
+-- Name: historial_peliculas id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.historial_peliculas ALTER COLUMN id SET DEFAULT nextval('public.historial_peliculas_id_seq'::regclass);
+
+
+--
+-- TOC entry 3193 (class 2604 OID 16640)
+-- Name: peliculas id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.peliculas ALTER COLUMN id SET DEFAULT nextval('public.peliculas_id_seq'::regclass);
+
+
+--
+-- TOC entry 3194 (class 2604 OID 16654)
+-- Name: usuario_peliculas id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario_peliculas ALTER COLUMN id SET DEFAULT nextval('public.usuario_peliculas_id_seq'::regclass);
+
+
+--
+-- TOC entry 3195 (class 2604 OID 16663)
+-- Name: usuario_reacciones id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario_reacciones ALTER COLUMN id SET DEFAULT nextval('public.usuario_reacciones_id_seq'::regclass);
+
+
+--
+-- TOC entry 3196 (class 2604 OID 16672)
+-- Name: usuario_roles id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario_roles ALTER COLUMN id SET DEFAULT nextval('public.usuario_roles_id_seq'::regclass);
+
+
+--
+-- TOC entry 3197 (class 2604 OID 16679)
+-- Name: usuarios id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios ALTER COLUMN id SET DEFAULT nextval('public.usuarios_id_seq'::regclass);
+
+
+--
+-- TOC entry 3372 (class 0 OID 16719)
+-- Dependencies: 221
+-- Data for Name: historial_peliculas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.historial_peliculas (id, fecha, precio_alquiler_anterior, precio_alquiler_nuevo, precio_venta_anterior, precio_venta_nuevo, titulo_anterior, titulo_nuevo, pelicula_historial_id, usuario_historial_id) FROM stdin;
+2	13-10-2022 23:01:12	anterior	nuevo	anterior	nuevo	anterior	nuevo	1	1
+3	13-10-2022 23:54:29	10	10	50	50	1	The Avengers	1	1
+4	17-10-2022 11:25:33	10	10	50	50	The Avengers	The Avengers	1	1
+\.
+
+
+--
+-- TOC entry 3361 (class 0 OID 16637)
+-- Dependencies: 210
+-- Data for Name: peliculas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.peliculas (id, descripcion, estado, fecha, imagen, numero_de_reacciones, precio_alquiler, precio_venta, stock, titulo) FROM stdin;
+5	Cazadores de fantasmas	t	17-10-2022 00:30:37	578437.jpg-c_310_420_x-f_jpg-q_x-xxyxx.jpg	0	20	50	4	Los Caza Fantasmas
+4	Buescando a nemo	t	16-10-2022 00:07:53	BuscandoaNemo-poster.webp	1	10	50	4	Buscando a Nemo
+1	Los vengadores	t	\N	avengers.jpg	0	10	50	25	The Avengers
+\.
+
+
+--
+-- TOC entry 3362 (class 0 OID 16645)
+-- Dependencies: 211
+-- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.roles (id, nombre) FROM stdin;
+1	ADMINISTRADOR
+2	NORMAL
+\.
+
+
+--
+-- TOC entry 3364 (class 0 OID 16651)
+-- Dependencies: 213
+-- Data for Name: usuario_peliculas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.usuario_peliculas (id, estado, fecha_fin, fecha_inicio, tipo, pelicula_usuario_id, usuario_pelicula_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3366 (class 0 OID 16660)
+-- Dependencies: 215
+-- Data for Name: usuario_reacciones; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.usuario_reacciones (id, estado, fecha, reaccion, pelicula_reaccion_id, usuario_reaccion_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3368 (class 0 OID 16669)
+-- Dependencies: 217
+-- Data for Name: usuario_roles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.usuario_roles (id, rol_id, usuario_id) FROM stdin;
+1	1	1
+2	2	2
+\.
+
+
+--
+-- TOC entry 3370 (class 0 OID 16676)
+-- Dependencies: 219
+-- Data for Name: usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.usuarios (id, apellido, email, estado, fecha, foto, nombre, numero_de_peliculas, password, telefono, username) FROM stdin;
+1	Rivera	prueba@hotmail.com	t	13-10-2022 09:58:44	foto.png	Nelson	\N	$2a$10$0J2ZEDC716lfGpgzCi60cuBoVJRDwrfz5QBX0E7nhKNjU5sF3WWP6	12345678	administrador
+2	Rivera	nelson@hotmail.com	t	\N	\N	Mauricio	\N	$2a$10$Eq74IX5bANvHbPIOnNlhTO.Wz77.2x.T7o5hqdeyrz0nU.PpOTUde	12345678	mauricio
+\.
+
+
+--
+-- TOC entry 3384 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: historial_peliculas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.historial_peliculas_id_seq', 4, true);
+
+
+--
+-- TOC entry 3385 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: peliculas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.peliculas_id_seq', 5, true);
+
+
+--
+-- TOC entry 3386 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: usuario_peliculas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.usuario_peliculas_id_seq', 11, true);
+
+
+--
+-- TOC entry 3387 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: usuario_reacciones_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.usuario_reacciones_id_seq', 25, true);
+
+
+--
+-- TOC entry 3388 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: usuario_roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.usuario_roles_id_seq', 2, true);
+
+
+--
+-- TOC entry 3389 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: usuarios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.usuarios_id_seq', 2, true);
+
+
+--
+-- TOC entry 3212 (class 2606 OID 16726)
+-- Name: historial_peliculas historial_peliculas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.historial_peliculas
+    ADD CONSTRAINT historial_peliculas_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3200 (class 2606 OID 16644)
+-- Name: peliculas peliculas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.peliculas
+    ADD CONSTRAINT peliculas_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3202 (class 2606 OID 16649)
+-- Name: roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3204 (class 2606 OID 16658)
+-- Name: usuario_peliculas usuario_peliculas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario_peliculas
+    ADD CONSTRAINT usuario_peliculas_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3206 (class 2606 OID 16667)
+-- Name: usuario_reacciones usuario_reacciones_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario_reacciones
+    ADD CONSTRAINT usuario_reacciones_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3208 (class 2606 OID 16674)
+-- Name: usuario_roles usuario_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario_roles
+    ADD CONSTRAINT usuario_roles_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3210 (class 2606 OID 16683)
+-- Name: usuarios usuarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios
+    ADD CONSTRAINT usuarios_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3216 (class 2606 OID 16699)
+-- Name: usuario_reacciones fk5pl8n4lwabbosb0fs9ter7leg; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario_reacciones
+    ADD CONSTRAINT fk5pl8n4lwabbosb0fs9ter7leg FOREIGN KEY (usuario_reaccion_id) REFERENCES public.usuarios(id);
+
+
+--
+-- TOC entry 3214 (class 2606 OID 16689)
+-- Name: usuario_peliculas fk68m3qy8ne9csbl80rmkbx1t13; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario_peliculas
+    ADD CONSTRAINT fk68m3qy8ne9csbl80rmkbx1t13 FOREIGN KEY (usuario_pelicula_id) REFERENCES public.usuarios(id);
+
+
+--
+-- TOC entry 3217 (class 2606 OID 16704)
+-- Name: usuario_roles fkbt9i9yrb9ug88xnh82n9m60pr; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario_roles
+    ADD CONSTRAINT fkbt9i9yrb9ug88xnh82n9m60pr FOREIGN KEY (rol_id) REFERENCES public.roles(id);
+
+
+--
+-- TOC entry 3219 (class 2606 OID 16727)
+-- Name: historial_peliculas fkdsk9youkn36hfko76jhvxahqf; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.historial_peliculas
+    ADD CONSTRAINT fkdsk9youkn36hfko76jhvxahqf FOREIGN KEY (pelicula_historial_id) REFERENCES public.peliculas(id);
+
+
+--
+-- TOC entry 3213 (class 2606 OID 16684)
+-- Name: usuario_peliculas fkeoto62e3efwf82ba1wrc7q5sl; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario_peliculas
+    ADD CONSTRAINT fkeoto62e3efwf82ba1wrc7q5sl FOREIGN KEY (pelicula_usuario_id) REFERENCES public.peliculas(id);
+
+
+--
+-- TOC entry 3215 (class 2606 OID 16694)
+-- Name: usuario_reacciones fkfaiwk9nt0g1itd85el4vxto53; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario_reacciones
+    ADD CONSTRAINT fkfaiwk9nt0g1itd85el4vxto53 FOREIGN KEY (pelicula_reaccion_id) REFERENCES public.peliculas(id);
+
+
+--
+-- TOC entry 3220 (class 2606 OID 16732)
+-- Name: historial_peliculas fkp4mww89qvkvji550uu1gpbdf2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.historial_peliculas
+    ADD CONSTRAINT fkp4mww89qvkvji550uu1gpbdf2 FOREIGN KEY (usuario_historial_id) REFERENCES public.usuarios(id);
+
+
+--
+-- TOC entry 3218 (class 2606 OID 16709)
+-- Name: usuario_roles fkuu9tea04xb29m2km5lwe46ua; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario_roles
+    ADD CONSTRAINT fkuu9tea04xb29m2km5lwe46ua FOREIGN KEY (usuario_id) REFERENCES public.usuarios(id);
+
+
+-- Completed on 2022-10-17 18:55:26
+
+--
+-- PostgreSQL database dump complete
+--
+

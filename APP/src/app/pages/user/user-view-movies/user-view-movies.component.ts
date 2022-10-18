@@ -122,6 +122,7 @@ export class UserViewMoviesComponent implements OnInit {
         }
       }
       this.DatosU = datos;
+      console.log(this.DatosU)
     })
   }
 
@@ -172,7 +173,7 @@ export class UserViewMoviesComponent implements OnInit {
     if (reaccion == 1) {
       this.restService.RestApi('DELETE','/ureacciones/'+idReaccion,{}).then((data:any)=>{
         this.restService.RestApi('DELETE','/ureacciones/'+idReaccion,{}).then((data:any)=>{
-          this.restService.RestApi('PUT','/peliculas/',peli).then((data:any)=>{
+          this.restService.RestApi('PUT','/peliculas/likes/',peli).then((data:any)=>{
             this.getReacciones();
           })
         })
@@ -189,7 +190,7 @@ export class UserViewMoviesComponent implements OnInit {
         "estado":true
       };
       this.restService.RestApi('POST','/ureacciones/',reaccionDatos).then((data:any)=>{
-        this.restService.RestApi('PUT','/peliculas/',peli).then((data:any)=>{
+        this.restService.RestApi('PUT','/peliculas/likes/',peli).then((data:any)=>{
           this.getReacciones();
         })
       })
